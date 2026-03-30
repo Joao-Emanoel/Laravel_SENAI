@@ -18,22 +18,26 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($alunos as $aluno)
-                <tr>
-                    <td>{{$aluno->id}}</td>
-                    <td>{{$aluno->nome}}</td>
-                    <td>{{$aluno->email}}</td>
-                    <td>
-                        <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
-                    </td>
-                    <td> </td>
-                    
-
-            @empty
-                <tr>
-                    <td colspan="3"> Nenhum Aluno encontrado</td>
-                </tr>
-            @endforelse
-    </tbody>
-</body>
-</html>
+    @forelse($alunos as $aluno)
+        <tr>
+            <td>{{$aluno->id}}</td>
+            <td>{{$aluno->nome}}</td>
+            <td>{{$aluno->email}}</td>
+            <td>
+                <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
+            </td>
+            <td>
+                <form action="{{ route('aluno.deletar', $aluno->id)}}" method="POST"
+                      onsubmit="return confirm('Deseja realmente excluir')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="5">Nenhum aluno encontrado</td>
+        </tr>
+    @endforelse
+</tbody>
