@@ -8,6 +8,11 @@ class Aluno extends Model
 {
     protected $fillable = [
         'nome',
-        'email'
+        'email',
+        'turma_id'
     ];
+
+    public function turma(){
+        return $this->belong(turma::class);
+    }
 }

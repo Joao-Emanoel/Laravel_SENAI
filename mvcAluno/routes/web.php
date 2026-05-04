@@ -29,3 +29,8 @@ Route::put('/aluno/{id}/update',[AlunoController::class, 'update'])
 Route::delete('aluno/{id}', [AlunoController::class, 'deletar'])
 ->name('aluno.deletar');
 
+Route::get('/turma/cadastrar', function(){
+    return view('cadastroTurma');
+})->name('turma.cadastro');
+
+Route::post('/turma/salvar',[TurmaController::class, 'add'])->name('turma.salvar');
